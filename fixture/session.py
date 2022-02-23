@@ -1,3 +1,6 @@
+import time
+from selenium.webdriver.common.by import By
+
 class SessionHelper:
 
     def __init__(self, app):
@@ -8,11 +11,13 @@ class SessionHelper:
         self.app.open_home_page()
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
-        wd.find_element_by_name("username").send_keys(administrator)
-        wd.find_element_by_css_selector("input[@value='Login']").click()
+        wd.find_element_by_name("username").send_keys(username)
+        wd.find_element(By.CSS_SELECTOR, "input[value='Login']").click()
+        time.sleep(5)
         wd.find_element_by_name("password").clear()
-        wd.find_element_by_name("password").send_keys(root)
-        wd.find_element_by_css_selector("input[@value='Login']").click()
+        wd.find_element_by_name("password").clear()
+        wd.find_element_by_name("password").send_keys(password)
+        wd.find_element(By.CSS_SELECTOR, "input[value='Login']").click()
 
     def logout(self):
         wd = self.app.wd
