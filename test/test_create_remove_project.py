@@ -8,14 +8,14 @@ def test_create_project(app, db):
     old_projects = db.get_projects()
 
     # Создаём новый проект
-    project = Project(name='Some awesome project')
+    project = Project(name='New awesome project')
     app.project.create_new_project(project)
 
     # Работа скрипта может продолжиться до завершения запроса
     time.sleep(1)
 
     # Получаем список проектов после создания
-    new_projects = db.get_projects()
+    new_projects = app.soap.get_user_accessible_projects()
 
     # Если проходит, значит проект создан
     assert len(old_projects) + 1 == len(new_projects)
@@ -34,7 +34,7 @@ def test_remove_project(app, db):
     app.project.delete_project(project)
 
     # Получаем список проектов после удаления
-    new_projects = db.get_projects()
+    new_projects = app.soap.get_user_accessible_projects()
 
     # Если проходит, значит проект удален
     assert len(old_projects) - 1 == len(new_projects)
