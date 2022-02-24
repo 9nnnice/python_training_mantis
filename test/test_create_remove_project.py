@@ -8,7 +8,8 @@ def test_create_project(app, db):
     old_projects = db.get_projects()
 
     # Создаём новый проект
-    app.project.create_new_project(Project(name='Some new project'))
+    project = Project(name='Some awesome project')
+    app.project.create_new_project(project)
 
     # Работа скрипта может продолжиться до завершения запроса
     time.sleep(1)
@@ -18,6 +19,10 @@ def test_create_project(app, db):
 
     # Если проходит, значит проект создан
     assert len(old_projects) + 1 == len(new_projects)
+
+    old_projects.append(project)
+
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
 
 
 def test_remove_project(app, db):
@@ -33,3 +38,7 @@ def test_remove_project(app, db):
 
     # Если проходит, значит проект удален
     assert len(old_projects) - 1 == len(new_projects)
+
+    old_projects.remove(project)
+
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
