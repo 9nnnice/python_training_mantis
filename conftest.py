@@ -21,6 +21,7 @@ def load_config(file):
 @pytest.fixture
 def app(request):
     global fixture
+    print('conftest run')
     browser = request.config.getoption("--browser")
     web_config = load_config(request.config.getoption("--target"))
     if fixture is None or not fixture.is_valid():

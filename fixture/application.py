@@ -7,6 +7,7 @@ from fixture.soap import SoapHelper
 class Application:
 
     def __init__(self, browser, base_url):
+        print('application create')
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
