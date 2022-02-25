@@ -3,5 +3,6 @@ pytest_bdd
 selenium
 jsonpickle
 pony
+suds-jurko
 pymysql
 mysql-connector-python-rf
