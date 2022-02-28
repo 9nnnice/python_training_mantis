@@ -8,7 +8,7 @@ def test_create_project(app, db):
     old_projects = db.get_projects()
 
     # Создаём новый проект
-    project = Project(name='New awesome project')
+    project = Project(name='Mega super new awesome project')
     app.project.create_new_project(project)
 
     # Работа скрипта может продолжиться до завершения запроса

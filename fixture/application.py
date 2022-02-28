@@ -6,7 +6,7 @@ from fixture.soap import SoapHelper
 
 class Application:
 
-    def __init__(self, browser, base_url):
+    def __init__(self, browser, base_url, config):
         print('application create')
         if browser == "firefox":
             self.wd = webdriver.Firefox()
@@ -21,6 +21,7 @@ class Application:
         self.project = ProjectHelper(self)
         self.base_url = base_url
         self.soap = SoapHelper(self)
+        self.config = config
 
     def is_valid(self):
         try:
